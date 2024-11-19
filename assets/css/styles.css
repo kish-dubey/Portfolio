@@ -30,6 +30,13 @@
                   hsl(var(--hue), 80%, 48%) 140deg,
                   hsl(var(--hue), 80%, 20%) 360deg);
 
+/* --conic-gradient: linear-gradient( */
+  /* to bottom right,  */
+  /* hsl(35, 0%, 95%), Light whitest peach at the top-left */
+  /* hsl(4, 100%, 1%)  Dark peach at the bottom-right */
+/* ); */
+
+
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Montserrat Alternates", sans-serif;
@@ -84,9 +91,17 @@ button {
   font-size: var(--normal-font-size);
 }
 
+/* yt*/
+/* body { 
+  background-color: var(--body-color);
+  color: var(--white-color);
+} */
+
 body {
   background-color: var(--body-color);
   color: var(--white-color);
+  margin: 0; /* Ensure no body margin */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 input,
@@ -116,9 +131,18 @@ img {
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
-.container {
+/* yt*/
+/* .container {
   max-width: 1168px;
   margin-inline: 1.5rem;
+} */
+
+/* worked chatgpt */
+.container {
+  max-width: 1168px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  overflow-x: hidden; /* Prevent container overflow */
 }
 
 .grid {
@@ -140,8 +164,8 @@ img {
   overflow: hidden;
 }
 
-/*=============== NAV ===============*/
-.nav {
+/*=============== NAV =============== yt*/
+/* .nav {
   position: fixed;
   bottom: 1.5rem;
   left: 0;
@@ -172,7 +196,45 @@ img {
   display: grid;
   place-items: center;
   transition: background-color .6s;
+} */
+
+/*=============== NAV ===============*/
+.nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%; /* Center the nav bar horizontally */
+  transform: translateX(-50%);
+  background-color: hsla(0, 0%, 98%, 0.1);
+  width: 88%;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1rem 2rem;
+  border-radius: 4rem;
+  z-index: var(--z-fixed);
+  overflow-x: hidden; /* Prevent nav content overflow */
 }
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Add spacing between nav items */
+  flex-wrap: wrap; /* Ensure items wrap on small screens */
+}
+
+.nav__link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  color: var(--white-color);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.6s;
+}
+/* --------------- */
+
 
 /* Active Link */
 .active-link{
@@ -183,7 +245,13 @@ img {
 /*===== PERFIL =====*/
 .perfil {
   position: relative;
-  background: var(--conic-gradient);
+  /* background: var(--conic-gradient);  */
+
+  background: linear-gradient(
+    to bottom right, 
+    hsl(35, 0%, 95%), /* Light whitest peach at the top-left */
+    hsl(4, 100%, 1%)  /* Dark peach at the bottom-right */
+  );
   height: 415px;
   border-radius: 2rem;
   padding: 1rem;
@@ -251,7 +319,12 @@ img {
 }
 
 .info__image {
-  background: var(--conic-gradient);
+  /* background: var(--conic-gradient); */
+  background: linear-gradient(
+  to bottom right, 
+  hsl(216, 7%, 55%), /* Light whitest peach at the top-left */
+  hsl(189, 32%, 8%)  /* Dark peach at the bottom-right */
+);
   height: 180px;
   border-radius: 2rem;
   display: grid;
@@ -306,7 +379,12 @@ img {
 }
 
 .about__image {
-  background: var(--conic-gradient);
+  /* background: var(--conic-gradient); */
+background: linear-gradient(
+  to bottom right, 
+  hsl(216, 7%, 55%), /* Light whitest peach at the top-left */
+  hsl(189, 32%, 8%)  /* Dark peach at the bottom-right */
+);
   height: 180px;
   border-radius: 2rem;
   display: grid;
@@ -567,8 +645,8 @@ img {
   font-size: var(--smaller-font-size);
 }
 
-/*=============== FOOTER ===============*/
-footer {
+/*=============== FOOTER =============== yt*/
+/* footer {
   padding-block: 2rem 8rem;
 }
 
@@ -626,6 +704,81 @@ footer {
   text-align: center;
   font-size: var(--small-font-size);
   color: var(--text-color);
+} */
+
+
+/*=============== FOOTER ===============*/
+footer {
+  padding-block: 2rem 4rem; /* Adjust vertical padding for smaller screens */
+  background-color: var(--body-color); /* Add a consistent background color */
+  text-align: center; /* Ensure content centers on small screens */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+  justify-content: center; /* Center-align all elements */
+  row-gap: 2.5rem;
+  padding: 0 1rem; /* Add padding for better spacing */
+}
+
+.footer_logo {
+  color: var(--white-color);
+  font: var(--font-regular) var(--biggest-font-size) var(--second-font);
+  justify-self: center;
+  text-align: center; /* Ensure logo stays centered */
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap; /* Allow links to wrap on small devices */
+  justify-content: center;
+  column-gap: 1.5rem; /* Reduce spacing for small screens */
+  row-gap: 1rem; /* Add row spacing for wrapping */
+}
+
+.footer__link {
+  color: var(--white-color);
+  font-size: var(--normal-font-size); /* Ensure links are readable */
+  transition: color 0.4s;
+}
+
+.footer__link:hover {
+  color: var(--text-color);
+}
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap; /* Allow social icons to wrap */
+  justify-content: center;
+  column-gap: 1.5rem;
+  row-gap: 1rem; /* Add row spacing */
+}
+
+.footer__social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.footer__social-link:hover {
+  background-color: var(--white-color);
+  color: var(--black-color);
+}
+
+.footer__copy {
+  display: block;
+  margin-top: 2rem; /* Reduced margin for smaller screens */
+  text-align: center;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
 }
 
 
@@ -651,7 +804,7 @@ footer {
 .scrollup {
   position: fixed;
   right: 1rem;
-  bottom: -50;
+  bottom: -50px;
   background-color: hsla(0, 0%, 98%, .1);
   display: inline-flex;
   padding: 6px;
@@ -686,14 +839,80 @@ footer {
 /*=============== BREAKPOINTS ===============*/
 
 /* For small devices (max-width: 320px) */
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   .container {
     margin-inline: 1rem;
   }
   .nav {
     padding: 1rem;
   }
+} */
+
+@media screen and (max-width: 320px) {
+  /* Prevent body scrolling and remove margins */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+  }
+
+  /* Ensure container takes full width without gaps */
+  .container {
+    margin: 0 auto;
+    padding: 0 1rem; /* Add internal padding for spacing */
+    max-width: 100%; /* Prevent overflow */
+  }
+
+  /* Adjust nav to fit perfectly */
+  .nav {
+    padding: 1rem;
+    width: 100%; /* Full-width navigation */
+  }
+
+  /* Ensure grid elements stack properly */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout for small devices */
+    gap: 1rem;
+  }
+
+  /* Make images and other media responsive */
+  img,
+  video {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent inline issues */
+  }
+
+  /* Ensure text and headings don't overflow */
+  h1, h2, h3, p {
+    word-wrap: break-word; /* Wrap long words to avoid overflow */
+  }
+
+  .footer__container {
+    grid-template-columns: 1fr; /* Ensure single-column layout */
+  }
+
+  .footer__links {
+    flex-direction: column; /* Stack links vertically */
+    gap: 0.5rem; /* Reduce space for small screens */
+  }
+
+  .footer__social {
+    flex-wrap: wrap; /* Allow social icons to wrap if needed */
+  }
+
+  .footer__social-link {
+    width: 2rem; /* Adjust size for smaller devices */
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+  .footer__copy {
+    font-size: 0.75rem; /* Reduce font size for copy text */
+  }
 }
+
 
 /* For medium devices (min-width: 540px) */
 @media screen and (min-width: 540px) {
